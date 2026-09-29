@@ -1,7 +1,21 @@
 import { Bot, InlineKeyboard, Keyboard, webhookCallback } from 'grammy'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import { portfolio, formatPrice } from '../src/data/portfolio'
-import type { ContactPayload } from '../src/types'
+import { portfolio, formatPrice } from './data/portfolio.js'
+
+interface ContactPayload {
+  type?: string
+  name?: string
+  contact?: string
+  message?: string
+  services?: string[]
+  serviceIds?: string[]
+  from?: {
+    id?: number
+    username?: string | null
+    first_name?: string
+  }
+  createdAt?: string
+}
 
 const BOT_TOKEN = process.env.BOT_TOKEN ?? ''
 const ADMIN_CHAT_ID = process.env.ADMIN_CHAT_ID ?? ''
